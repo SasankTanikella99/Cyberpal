@@ -13,8 +13,10 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-
-app.use(cors(corsOptions));
+// CORS configuration
+// Since frontend and backend are served from the same origin, you might not need CORS
+// But if you decide to keep it for future-proofing:
+app.use(cors());
 
 // Connect to database
 connectDB();
@@ -35,5 +37,5 @@ app.get('*', (req, res) => {
 });
 
 // Start the server
-const PORT = process.env.PORT || 10000;  // Changed default to 10000 as Render often uses this
+const PORT = process.env.PORT || 10000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

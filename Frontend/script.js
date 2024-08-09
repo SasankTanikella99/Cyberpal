@@ -1,4 +1,10 @@
 document.addEventListener('DOMContentLoaded', () => {
+
+    const BASE_URL = window.location.hostname === 'localhost' 
+    ? 'http://localhost:9009' 
+    : 'https://cyberpal.onrender.com';
+
+
     const signupForm = document.getElementById('signupForm');
     const loginForm = document.getElementById('loginForm');
     const message = document.getElementById('message');
@@ -19,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const password = document.getElementById('password').value;
 
             try {
-                const response = await fetch('http://localhost:9009/api/users/register', {
+                const response = await fetch(`${BASE_URL}/api/users/register`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -54,7 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const password = document.getElementById('password').value;
 
             try {
-                const response = await fetch('http://localhost:9009/api/users/login', {
+                const response = await fetch(`${BASE_URL}/api/users/login`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -104,7 +110,7 @@ document.addEventListener('DOMContentLoaded', () => {
             };
 
             try {
-                const response = await fetch('http://localhost:9009/api/users/response', {
+                const response = await fetch(`${BASE_URL}/api/users/response`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -136,7 +142,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             try {
                 const token = localStorage.getItem('token');
-                const response = await fetch('http://localhost:9009/api/scores', {
+                const response = await fetch(`${BASE_URL}/api/scores`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',

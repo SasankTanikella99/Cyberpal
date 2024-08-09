@@ -12,7 +12,9 @@ const app = express();
 // Middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cors());
+
+
+app.use(cors(corsOptions));
 
 // Connect to database
 connectDB();
@@ -27,6 +29,11 @@ app.use('/', frontendRoutes);
 // Serve static files
 app.use(express.static(path.join(__dirname, 'Frontend')));
 
+// For SPA routing, send all requests to index.html
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'Frontend', 'index.html'));
+});
+
 // Start the server
-const PORT = process.env.PORT || 9009;
+const PORT = process.env.PORT || 10000;  // Changed default to 10000 as Render often uses this
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

@@ -39,6 +39,11 @@
     </div>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+
+            const BASE_URL = window.location.hostname === 'localhost' 
+            ? '${BASE_URL}' 
+            : 'https://cyberpal.onrender.com';
+
             const token = localStorage.getItem('token');
             if (!token) {
                 window.location.href = 'login.html';
@@ -58,7 +63,7 @@
 
             viewProfileBtn.addEventListener('click', async () => {
                 try {
-                    const response = await fetch('http://localhost:9009/api/users/profile', {
+                    const response = await fetch(`${BASE_URL}/api/users/profile`, {
                         method: 'GET',
                         headers: {
                             'Authorization': `Bearer ${token}`,
@@ -97,7 +102,7 @@
                 const email = document.getElementById('updateEmail').value;
 
                 try {
-                    const response = await fetch('http://localhost:9009/api/users/profile', {
+                    const response = await fetch(`${BASE_URL}/api/users/profile`, {
                         method: 'PUT',
                         headers: {
                             'Authorization': `Bearer ${token}`,
@@ -130,7 +135,7 @@
             deleteUserBtn.addEventListener('click', async () => {
                 if (confirm('Are you sure you want to delete your account?')) {
                     try {
-                        const response = await fetch('http://localhost:9009/api/users/profile', {
+                        const response = await fetch(`${BASE_URL}/api/users/profile`, {
                             method: 'DELETE',
                             headers: {
                                 'Authorization': `Bearer ${token}`,

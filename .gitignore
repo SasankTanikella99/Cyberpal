@@ -1,5 +1,5 @@
 node_modules
 cPanel database password = Cyberpal@nist1
-
+production.databaseurl
 
 User “oheuzamy_cyberpal” was added to the database “oheuzamy_cyberpal_database_nist”.
